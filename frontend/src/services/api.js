@@ -36,15 +36,19 @@ export const deleteAllTransactions = async () => {
   return response.data;
 };
 
-export const decryptImage = async (file, passkey) => {
+export const decryptImage = async (imageFile, keyFile, masterPassphrase) => {
   const formData = new FormData();
-  formData.append('image', file);
-  formData.append('passkey', passkey);
+  formData.append('image',            imageFile);
+  formData.append('keyFile',          keyFile);
+  formData.append('masterPassphrase', masterPassphrase);
   const response = await api.post('/decrypt-image', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
+    headers: { 'Content-Type': 'multipart/form-data' },
   });
+  return response.data;
+};
+
+export const vaultDecrypt = async (id, masterPassphrase) => {
+  const response = await api.post(`/transactions/${id}/decrypt`, { masterPassphrase });
   return response.data;
 };
 
