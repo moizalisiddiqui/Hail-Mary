@@ -1,14 +1,11 @@
 {
-  "buildCommand": "pip install -r requirements.txt",
-  "startCommand": "node server.js",
-  "envVars": [
-    { "key": "MONGODB_URI", "value": "" },
-    { "key": "CLOUDINARY_CLOUD_NAME", "value": "" },
-    { "key": "CLOUDINARY_API_KEY", "value": "" },
-    { "key": "CLOUDINARY_API_SECRET", "value": "" },
-    { "key": "GEMINI_API_KEY", "value": "" },
-    { "key": "ENCRYPTION_KEY", "value": "" },
-    { "key": "FRONTEND_URL", "value": "" },
-    { "key": "PORT", "value": "5000" }
-  ]
+  "$schema": "https://schema.railway.app/railway-config-schema.json",
+  "build": {
+    "builder": "NIXPACKS"
+  },
+  "deploy": {
+    "startCommand": "node server.js",
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
+  }
 }

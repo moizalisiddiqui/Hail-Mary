@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["python311", "nodejs_20"]
+
+[phases.install]
+cmds = ["npm ci", "python3 -m pip install pillow==10.2.0"]
+
+[start]
+cmd = "node server.js"
